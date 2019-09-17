@@ -14,23 +14,28 @@ function App() {
   const addItem = item => {
     setCart([...cart, item]);
   };
-
+  const removeItem = itemId => {
+    // console.log(itemId);
+    // console.log(cart.filter(item => item.id != itemId));
+    setCart(cart.filter(item => item.id != itemId));
+    // console.log(cart);
+    
+  };
   return (
     <CartContext.Provider value={cart}>
-    <ProductsContext.Provider value={products}>
-      <div className="App">
-        <Navigation/>
+      <ProductsContext.Provider value={products}>
+        <div className="App">
+          <Navigation />
 
-        {/* Routes */}
-        <Route
-          exact
-          path="/"
-          render={() => <Products addItem={addItem} />}
-        />
+          {/* Routes */}
+          <Route exact path="/" render={() => <Products addItem={addItem} />} />
 
-        <Route path="/cart" render={() => <ShoppingCart/>} />
-      </div>
-    </ProductsContext.Provider>
+          <Route
+            path="/cart"
+            render={() => <ShoppingCart removeItem={removeItem} />}
+          />
+        </div>
+      </ProductsContext.Provider>
     </CartContext.Provider>
   );
 }

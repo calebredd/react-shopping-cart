@@ -13,7 +13,7 @@ const cart=useContext(CartContext);
 	return (
 		<div className="shopping-cart">
 			{cart.map(item => (
-				<Item key={item.id} {...item} />
+				<Item key={item.id} id={item.id} removeItem={props.removeItem} {...item} />
 			))}
 
 			<div className="shopping-cart__checkout">
